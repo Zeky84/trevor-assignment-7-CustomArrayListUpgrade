@@ -57,7 +57,7 @@ public class CustomListImp<T> implements CustomList<T> {
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e + "-> Index " + index + " out of the list range: 0-" + size);
-            return (T) IndexOutOfBoundsException.class;
+            return null;
         }
 
     }
@@ -81,7 +81,7 @@ public class CustomListImp<T> implements CustomList<T> {
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e + "-> Index " + index + " out of the list range: 0-" + size);
-            return (T) IndexOutOfBoundsException.class;
+            return null;
         }
 
     }

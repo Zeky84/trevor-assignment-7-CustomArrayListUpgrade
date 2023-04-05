@@ -62,8 +62,8 @@ class CustomListImpTest {
         for (int x = 0; x < 5; x++) {
             myListToCheck.add(x + 1);
         }
-        //Returning exception for index request out of range.
-        assertEquals(myListToCheck.get(34), IndexOutOfBoundsException.class);
+        //Getting item out of index.Catching the exception and returning null
+        assertNull(myListToCheck.get(34));
     }
 
     @Test
@@ -81,8 +81,8 @@ class CustomListImpTest {
         //Getting the new item on index 2(4) to check items move to left after removing item
         assertEquals(removingItem.get(2), 4);
 
-        //Removing item out of the list range(return IndexOutOfBoundException)
-        assertEquals(removingItem.remove(24), IndexOutOfBoundsException.class);
+        //Removing item out of the list range.Catching the exception and returning null.
+        assertNull(removingItem.remove(24));
 
 
     }
