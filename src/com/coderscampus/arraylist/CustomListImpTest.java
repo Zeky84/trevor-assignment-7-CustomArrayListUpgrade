@@ -83,7 +83,5 @@ class CustomListImpTest {
 
         //Removing item out of the list range.Catching the exception and returning null.
         assertNull(removingItem.remove(24));
-
-
     }
 }

@@ -59,7 +59,6 @@ public class CustomListImp<T> implements CustomList<T> {
             System.out.println(e + "-> Index " + index + " out of the list range: 0-" + size);
             return null;
         }
-
     }
 
     @Override
@@ -83,8 +82,5 @@ public class CustomListImp<T> implements CustomList<T> {
             System.out.println(e + "-> Index " + index + " out of the list range: 0-" + size);
             return null;
         }
-
     }
-
-
 }
