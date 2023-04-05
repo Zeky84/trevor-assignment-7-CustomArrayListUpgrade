@@ -17,11 +17,11 @@ public class CustomListApp {
         myStringListTest.add("ten");
         myStringListTest.add(0, "Pete"); // adding item by index
         myStringListTest.add(3, "MANOLO MANOLO 3"); // adding item by index
-        myStringListTest.add(0,"Roche :)");
+        myStringListTest.add(0, "Roche :)");
         myStringListTest.remove(0); // removing item by index
         myStringListTest.remove(2); // removing item by index
         myStringListTest.get(25);// retrieving item from index 25. Does not exist. Throw IndexOutOfBound...
-        myStringListTest.add(21,"Test to fail");//Adding item to index out of list range. Throw IndexOutOfBound...
+        myStringListTest.add(21, "Test to fail");//Adding item to index out of list range. Throw IndexOutOfBound...
         myStringListTest.remove(34);//Removing item out of range.Throw IndexOutOfBound...
 
         for (int x = 0; x < myStringListTest.getSize(); x++) {
