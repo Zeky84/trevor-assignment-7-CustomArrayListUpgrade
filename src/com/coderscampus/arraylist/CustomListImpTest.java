@@ -63,7 +63,7 @@ class CustomListImpTest {
             myListToCheck.add(x + 1);
         }
         //Getting item out of index.Catching the exception and returning null
-        assertNull(myListToCheck.get(34));
+        assertNull(myListToCheck.get(6));
     }
 
     @Test
@@ -71,17 +71,17 @@ class CustomListImpTest {
         //Arrange
         CustomList<Integer> removingItem = new CustomListImp<>();
         //Act
-        for (int x = 0; x < 20; x++) {
+        for (int x = 0; x < 13; x++) {
             removingItem.add(x + 1);
         }
         //Checking the list size after removing item
         removingItem.remove(2); // Removing item 3
-        assertEquals(removingItem.getSize(), 19);
+        assertEquals(removingItem.getSize(), 12);
 
         //Getting the new item on index 2(4) to check items move to left after removing item
         assertEquals(removingItem.get(2), 4);
 
         //Removing item out of the list range.Catching the exception and returning null.
-        assertNull(removingItem.remove(24));
+        assertNull(removingItem.remove(12));
     }
 }
