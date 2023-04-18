@@ -14,9 +14,8 @@ public class CustomListApp {
         myStringListTest.add("seven");
         myStringListTest.add("eight");
         myStringListTest.add("nine");
-        myStringListTest.add("ten");
         System.out.println("List length: " + myStringListTest.getSize());
-        myStringListTest.add(11, "Pete Carapetyan 2"); // adding item by index
+        myStringListTest.add(10, "Pete Carapetyan 2"); // adding item by index
         myStringListTest.add(3, "MANOLO MANOLO 3"); // adding item by index
         myStringListTest.add(0, "Roche :)");
         myStringListTest.remove(0); // removing item by index

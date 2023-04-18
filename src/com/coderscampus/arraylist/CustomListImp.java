@@ -20,66 +20,54 @@ public class CustomListImp<T> implements CustomList<T> {
 
     @Override
     public boolean add(int index, T item) throws IndexOutOfBoundsException {
-        try {
-            if (index >= 0 && index <= size) {
-                Object[] itemsAfterNewItem = Arrays.copyOfRange(items, index, size);
-                Object[] itemsBeforeNewItem = Arrays.copyOfRange(items, 0, index + 1);
-                itemsBeforeNewItem[index] = item;
-                items = Arrays.copyOf(itemsBeforeNewItem, itemsBeforeNewItem.length + itemsAfterNewItem.length);
-                index = itemsBeforeNewItem.length;
-                for (Object itemToAdd : itemsAfterNewItem) {
-                    items[index] = itemToAdd;
-                    index++;
-                }
-                size++;
-                return true;
-            } else {
-                throw new IndexOutOfBoundsException();
+        if (index >= 0 && index <= size) {
+            if (size == items.length) {
+                items = Arrays.copyOf(items, items.length * 2);
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e + "-> Index: " + index + " out of list range: " + items.length);
-            return false;
+            Object[] itemsAfterNewItem = Arrays.copyOfRange(items, index, items.length - 1);
+            Object[] itemsBeforeNewItem = Arrays.copyOfRange(items, 0, index + 1);
+            itemsBeforeNewItem[index] = item;
+            items = Arrays.copyOf(itemsBeforeNewItem, items.length);
+            index = itemsBeforeNewItem.length;
+            for (int x = 0; x < itemsAfterNewItem.length; x++) {
+                items[index + x] = itemsAfterNewItem[x];
+            }
+
+            size++;
+            return true;
+        } else {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
         }
     }
 
     @Override
     public int getSize() {
-        items = Arrays.copyOf(items, size);
-        return items.length;
+        return size;
     }
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        try {
-            items = Arrays.copyOf(items, size);
+        if (index >= 0 && index <= size) {
             return (T) items[index];
-
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e);
-            return null;
+        } else {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
         }
     }
 
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
-        try {
-            if (index >= 0 && index < size) {
-                Object[] afterIndex = Arrays.copyOfRange(items, index + 1, size);
-                Object[] beforeIndex = Arrays.copyOfRange(items, 0, index);
-                items = Arrays.copyOf(beforeIndex, beforeIndex.length + afterIndex.length);
-//                index = beforeIndex.length;
-                for (Object itemToAdd : afterIndex) {
-                    items[index] = itemToAdd;
-                    index++;
-                }
-                size--;
-                return (T) items;
-            } else {
-                throw new IndexOutOfBoundsException();
+        if (index >= 0 && index < size) {
+            Object[] afterIndex = Arrays.copyOfRange(items, index + 1, items.length);
+            Object[] beforeIndex = Arrays.copyOfRange(items, 0, index);
+            items = Arrays.copyOf(beforeIndex, items.length);
+            for (Object itemToAdd : afterIndex) {
+                items[index] = itemToAdd;
+                index++;
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e + "-> Index: " + index + " out of list range: " + items.length);
-            return null;
+            size--;
+            return (T) items[index];
+        } else {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
         }
     }
 }
