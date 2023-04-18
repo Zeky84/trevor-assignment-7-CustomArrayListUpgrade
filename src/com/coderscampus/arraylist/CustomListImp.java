@@ -24,14 +24,12 @@ public class CustomListImp<T> implements CustomList<T> {
             if (size == items.length) {
                 items = Arrays.copyOf(items, items.length * 2);
             }
-            Object[] itemsAfterNewItem = Arrays.copyOfRange(items, index, items.length - 1);
-            Object[] itemsBeforeNewItem = Arrays.copyOfRange(items, 0, index + 1);
-            itemsBeforeNewItem[index] = item;
-            items = Arrays.copyOf(itemsBeforeNewItem, items.length);
-            index = itemsBeforeNewItem.length;
-            for (int x = 0; x < itemsAfterNewItem.length; x++) {
-                items[index + x] = itemsAfterNewItem[x];
-            }
+            Object[] afterIndex = Arrays.copyOfRange(items, index, items.length - 1);
+            Object[] beforeIndex = Arrays.copyOfRange(items, 0, index + 1);
+            beforeIndex[index] = item;
+            items = Arrays.copyOf(beforeIndex, items.length);
+            index = beforeIndex.length;
+            System.arraycopy(afterIndex, 0, items, index + 0, afterIndex.length);
 
             size++;
             return true;
@@ -60,10 +58,8 @@ public class CustomListImp<T> implements CustomList<T> {
             Object[] afterIndex = Arrays.copyOfRange(items, index + 1, items.length);
             Object[] beforeIndex = Arrays.copyOfRange(items, 0, index);
             items = Arrays.copyOf(beforeIndex, items.length);
-            for (Object itemToAdd : afterIndex) {
-                items[index] = itemToAdd;
-                index++;
-            }
+            System.arraycopy(afterIndex, 0, items, index + 0, afterIndex.length);
+
             size--;
             return (T) items[index];
         } else {

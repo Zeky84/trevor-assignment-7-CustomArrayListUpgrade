@@ -87,4 +87,40 @@ class CustomListImpTest {
         assertEquals(sutRemovingItem.get(2), 4);
 
     }
+    @Test
+    void should_fail_when_adding_out_of_index(){
+        CustomList<Integer> failAddingItem = new CustomListImp<>();
+        for (int x = 0; x < 10; x++) {
+            failAddingItem.add(x + 1);
+        }
+        try{
+            failAddingItem.add(11,5);//Adding item out of index
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Exception: " + e);
+        }
+    }
+    @Test
+    void should_fail_when_removing_out_of_index(){
+        CustomList<Integer> failRemovingItem = new CustomListImp<>();
+        for (int x = 0; x < 5; x++) {
+            failRemovingItem.add(x + 1);
+        }
+        try{
+            failRemovingItem.remove(6);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("Exception: " + e);
+        }
+    }
+    @Test
+    void should_fail_when_getting_item_out_of_index(){
+        CustomList<Integer> failGettingItem = new CustomListImp<>();
+        for (int x = 0; x < 1000; x++) {
+            failGettingItem.add(x + 1);
+        }
+        try{
+            failGettingItem.get(1001);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("Exception: " + e);
+        }
+    }
 }
